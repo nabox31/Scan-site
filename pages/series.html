@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Series - Webcomic Reader</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="../index.html" class="logo">📚 Webcomics</a>
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mt-6">
+    <div id="series-header" class="mb-6">
+      <div class="loading">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    
+    <h2 class="mb-4">Chapters</h2>
+    <div id="chapter-list" class="chapter-list">
+      <div class="loading">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-items">
+      <a href="../index.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="admin.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">⚙️</span>
+        <span>Admin</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/series.js"></script>
+</body>
+</html>

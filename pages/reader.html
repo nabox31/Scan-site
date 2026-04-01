@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reading - Webcomic Reader</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body style="padding-bottom: 70px;">
+  <div class="reader-progress">
+    <div class="reader-progress-bar" id="progress-bar" style="width: 0%;"></div>
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button class="reader-menu-btn" id="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <!-- Mobile Menu -->
+  <div class="reader-menu" id="reader-menu">
+    <a id="menu-prev" href="#" class="reader-menu-item" style="display: none;">
+      <span>←</span> Previous Chapter
+    </a>
+    <a id="menu-chapters" href="#" class="reader-menu-item">
+      <span>📑</span> All Chapters
+    </a>
+    <a id="menu-home" href="../index.html" class="reader-menu-item">
+      <span>🏠</span> Home
+    </a>
+    <div class="reader-menu-item" onclick="scrollToTop()">
+      <span>⬆️</span> Scroll to Top
+    </div>
+    <div class="reader-menu-item" onclick="scrollToBottom()">
+      <span>⬇️</span> Scroll to Bottom
+    </div>
+    <a id="menu-next" href="#" class="reader-menu-item" style="display: none;">
+      <span>→</span> Next Chapter
+    </a>
+  </div>
+
+  <!-- Tap Zones for Mobile Navigation -->
+  <div class="reader-tap-zone reader-tap-left" id="tap-left" title="Tap for previous chapter"></div>
+  <div class="reader-tap-zone reader-tap-right" id="tap-right" title="Tap for next chapter"></div>
+
+  <!-- Swipe Hint -->
+  <div class="swipe-hint" id="swipe-hint">Swipe left/right to navigate</div>
+
+  <div class="reader-container" id="reader-container">
+    <div class="loading" style="padding: 100px 0;">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <nav class="reader-nav">
+    <div class="reader-nav-content">
+      <a id="prev-chapter" href="#" class="btn btn-secondary btn-sm" style="visibility: hidden;">← Prev</a>
+      <a id="back-to-series" href="#" class="btn btn-secondary btn-sm">Chapters</a>
+      <a id="next-chapter" href="#" class="btn btn-secondary btn-sm" style="visibility: hidden;">Next →</a>
+    </div>
+  </nav>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/reader.js"></script>
+</body>
+</html>

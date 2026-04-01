@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Webcomic Reader</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a href="../index.html" class="logo">📚 Webcomics</a>
+      <nav class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mt-6">
+    <h1 class="mb-4">Admin Panel</h1>
+
+    <!-- Create Series Section -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">Create New Series</h2>
+      <form id="series-form">
+        <div class="form-group">
+          <label class="form-label" for="series-title">Series Title *</label>
+          <input type="text" id="series-title" class="form-input" required placeholder="Enter series title">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="series-desc">Description</label>
+          <textarea id="series-desc" class="form-textarea" rows="3" placeholder="Enter description (optional)"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="series-cover">Cover Image URL</label>
+          <input type="url" id="series-cover" class="form-input" placeholder="https://... (or leave empty for default)">
+          <p class="form-hint">You can upload to Supabase Storage and paste the URL here</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Series</button>
+      </form>
+    </section>
+
+    <!-- Create Chapter Section -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">Add Chapter</h2>
+      <form id="chapter-form">
+        <div class="form-group">
+          <label class="form-label" for="chapter-series">Select Series *</label>
+          <select id="chapter-series" class="form-select" required>
+            <option value="">Loading series...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="chapter-number">Chapter Number *</label>
+          <input type="number" id="chapter-number" class="form-input" required min="1" step="0.1" placeholder="e.g., 1, 1.5, 2">
+          <p class="form-hint" id="chapter-suggestion" style="color: var(--accent);"></p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="chapter-title">Chapter Title</label>
+          <input type="text" id="chapter-title" class="form-input" placeholder="Enter chapter title (optional)">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Chapter</button>
+      </form>
+    </section>
+
+    <!-- Upload Images Section -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">Upload Chapter Images</h2>
+      <form id="upload-form">
+        <div class="form-group">
+          <label class="form-label" for="upload-series">Select Series *</label>
+          <select id="upload-series" class="form-select" required>
+            <option value="">Loading series...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="upload-chapter">Select Chapter *</label>
+          <select id="upload-chapter" class="form-select" required disabled>
+            <option value="">Select a series first</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Upload Images *</label>
+          <div class="upload-zone" id="upload-zone">
+            <div class="upload-zone-text">Click to select or drag & drop images here</div>
+            <div class="upload-zone-hint">Supports: JPG, PNG, WEBP. Images are auto-ordered by filename.</div>
+          </div>
+          <input type="file" id="file-input" multiple accept="image/*" class="sr-only">
+        </div>
+        
+        <div id="image-previews" class="image-preview-grid hidden"></div>
+        
+        <button type="submit" class="btn btn-primary btn-full mt-4" id="upload-btn" disabled>
+          Upload Images
+        </button>
+      </form>
+    </section>
+
+    <!-- Manage Chapter Images Section -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">Manage Chapter Images</h2>
+      <div class="form-group">
+        <label class="form-label" for="manage-series">Select Series</label>
+        <select id="manage-series" class="form-select">
+          <option value="">Loading series...</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="manage-chapter">Select Chapter</label>
+        <select id="manage-chapter" class="form-select" disabled>
+          <option value="">Select a series first</option>
+        </select>
+      </div>
+      <div id="manage-images-grid" class="image-preview-grid hidden"></div>
+      <div id="manage-images-info" class="text-muted mt-4" style="display: none;">
+        <p>Click the X button on any image to delete it. Page numbers will automatically reorder.</p>
+      </div>
+    </section>
+
+    <!-- Manage Series Section -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">Manage Series</h2>
+      <div id="manage-series-list">
+        <div class="loading">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-items">
+      <a href="../index.html" class="mobile-nav-item">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="admin.html" class="mobile-nav-item active">
+        <span class="mobile-nav-icon">⚙️</span>
+        <span>Admin</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>
